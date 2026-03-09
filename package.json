@@ -1,0 +1,25 @@
+{
+  "name": "signed-qr-js",
+  "version": "1.0.0",
+  "description": "Tiny parser for AltID Signed QR and e-Boks / dewa SecureQR",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "ts-types": "tsc",
+    "build": "rimraf lib && tsc"
+  },
+  "keywords": [
+    "signed-qr",
+    "secure-qr",
+    "mdoc",
+    "sdjwt",
+    "altid"
+  ],
+  "author": "Daniel Florescu",
+  "license": "Apache-2.0",
+  "packageManager": "pnpm@10.31.0+sha512.e3927388bfaa8078ceb79b748ffc1e8274e84d75163e67bc22e06c0d3aed43dd153151cbf11d7f8301ff4acb98c68bdc5cadf6989532801ffafe3b3e4a63c268",
+  "devDependencies": {
+    "rimraf": "^6.1.3",
+    "typescript": "^5.9.3"
+  }
+}
