@@ -21,7 +21,7 @@ which are commonly used for device-to-device presentations of digital proofs bet
 ### SDJWT-based "SecureQR" (used by e-Boks ID)
 
 - [x] **Basic QR Frame Decoding** - Parse individual QR code frames with parameters
-- [ ] **Multi-QR Assembly** - Combine multiple QR codes into complete payload
+- [x] **Multi-QR Assembly** - Combine multiple QR codes into complete payload
 - [ ] **Signature Verification** - Verify cryptographic signatures of decoded payload
 - [ ] **Trust Anchor Validation** - Validate against trusted certificate authorities
 - [ ] **Documentation** - Comprehensive API documentation and usage guides
