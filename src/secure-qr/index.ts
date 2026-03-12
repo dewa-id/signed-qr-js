@@ -1,7 +1,7 @@
 // Copyright 2026 dewa ApS
 // SPDX-License-Identifier: Apache-2
-import { inflate } from "pako";
-import { encodeBase64Url, decodeBase64Url } from "@std/encoding";
+import { base64 } from "@hexagon/base64";
+// import { inflate } from "pako";
 
 export interface SecureQrFrame {
   id: string; // unique presentation ID
@@ -18,7 +18,9 @@ export function decodeSecureQrFramePayload(frameUri: string): SecureQrFrame {
     id: url.searchParams.get("id") || "",
     n: Number.parseInt(url.searchParams.get("n") || "-1"),
     m: Number.parseInt(url.searchParams.get("m") || "-1"),
-    d: decodeBase64Url(url.searchParams.get("d") || ""),
+    d: new Uint8Array(
+      base64.toArrayBuffer(url.searchParams.get("d") || "", true),
+    ),
   } satisfies SecureQrFrame;
 
   if (frameData.id.length === 0)

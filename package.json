@@ -34,7 +34,7 @@
     "typescript-eslint": "^8.57.0"
   },
   "dependencies": {
-    "@std/encoding": "jsr:^1.0.10",
+    "@hexagon/base64": "^2.0.4",
     "pako": "^2.1.0"
   }
 }
