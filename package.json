@@ -1,6 +1,6 @@
 {
   "name": "@dewa-id/signed-qr",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Tiny parser for AltID Signed QR and e-Boks SecureQR",
   "type": "module",
   "main": "lib/index.js",
@@ -19,13 +19,15 @@
     "m-doc",
     "mdl",
     "sdjwt",
-    "altid"
+    "altid",
+    "eboks"
   ],
   "author": "Daniel Florescu",
   "license": "Apache-2.0",
   "packageManager": "pnpm@10.31.0+sha512.e3927388bfaa8078ceb79b748ffc1e8274e84d75163e67bc22e06c0d3aed43dd153151cbf11d7f8301ff4acb98c68bdc5cadf6989532801ffafe3b3e4a63c268",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/lodash-es": "^4.17.12",
     "@types/pako": "^2.0.4",
     "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
@@ -37,6 +39,7 @@
   },
   "dependencies": {
     "@hexagon/base64": "^2.0.4",
+    "lodash-es": "^4.17.23",
     "pako": "^2.1.0"
   }
 }
