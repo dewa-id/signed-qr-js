@@ -1,10 +1,31 @@
-# signed-qr.js
+# @dewa-id/signed-qr
 
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](https://www.typescriptlang.org/)
 
 A Node.js package written in Typescript for decoding and parsing QR codes
-according to the AltID *Signed QR*<sup>[reference here]</sup> and e-Boks / dewa *SecureQR*<sup>[reference 2 here]</sup> specifications,
+according to the Digitaliseringsstyrelsen _Signed QR_<sup>_[1]_</sup> and dewa _SecureQR_<sup>_[2]_</sup> specifications,
 which are commonly used for device-to-device presentations of digital proofs between wallets.
+
+## Roadmap
+
+### CBOR/mDoc based "Signed QR" (used by AltID)
+
+- [ ] **Basic QR Frame Decoding** - Parse individual QR code frames with parameters
+- [ ] **Multi-QR Assembly** - Combine multiple QR codes into complete payload
+- [ ] **Signature Verification** - Verify cryptographic signatures of decoded payload
+- [ ] **Trust Anchor Validation** - Validate against trusted certificate authorities
+
+### SDJWT-based "SecureQR" (used by e-Boks ID)
+
+- [x] **Basic QR Frame Decoding** - Parse individual QR code frames with parameters
+- [ ] **Multi-QR Assembly** - Combine multiple QR codes into complete payload
+- [ ] **Signature Verification** - Verify cryptographic signatures of decoded payload
+- [ ] **Trust Anchor Validation** - Validate against trusted certificate authorities
+
+## References
+
+- [1] [Implementing Age Verification With Danish Digital Identity Wallet (DKTB)](https://digst.dk/media/5gybwsaq/implementing-age-verification-with-danish-digital-identity-wallet-dktb-09.pdf)
+- [2] [Documentation dewa SecureQR](https://docs.dewa-id.com/docs/e-wallet/qr-code/)
 
 ## License
 

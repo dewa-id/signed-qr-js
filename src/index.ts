@@ -1,5 +1,3 @@
-// work in progress
-
-export function add(a: number, b: number): number {
-  return a + b;
-}
+// Copyright 2026 dewa ApS
+// SPDX-License-Identifier: Apache-2
+export * from "./secure-qr/index.js";
