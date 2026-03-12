@@ -2,7 +2,7 @@
 
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](https://www.typescriptlang.org/)
 
-A Node.js package written in Typescript for decoding and parsing QR codes
+A Node.js / Web package written in Typescript for decoding and parsing QR codes
 according to the Digitaliseringsstyrelsen _Signed QR_<sup>[1]</sup> and dewa _SecureQR_<sup>[2]</sup> specifications,
 which are commonly used for device-to-device presentations of digital proofs between wallets.
 
@@ -14,6 +14,9 @@ which are commonly used for device-to-device presentations of digital proofs bet
 - [ ] **Multi-QR Assembly** - Combine multiple QR codes into complete payload
 - [ ] **Signature Verification** - Verify cryptographic signatures of decoded payload
 - [ ] **Trust Anchor Validation** - Validate against trusted certificate authorities
+- [ ] **Documentation** - Comprehensive API documentation and usage guides
+- [ ] **Tests** - Unit tests and integration tests
+- [ ] **Examples** - Working examples and sample code
 
 ### SDJWT-based "SecureQR" (used by e-Boks ID)
 
@@ -21,6 +24,9 @@ which are commonly used for device-to-device presentations of digital proofs bet
 - [ ] **Multi-QR Assembly** - Combine multiple QR codes into complete payload
 - [ ] **Signature Verification** - Verify cryptographic signatures of decoded payload
 - [ ] **Trust Anchor Validation** - Validate against trusted certificate authorities
+- [ ] **Documentation** - Comprehensive API documentation and usage guides
+- [ ] **Tests** - Unit tests and integration tests
+- [ ] **Examples** - Working examples and sample code
 
 ## References
 
