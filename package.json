@@ -1,6 +1,6 @@
 {
   "name": "@dewa-id/signed-qr",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Tiny parser for AltID Signed QR and e-Boks SecureQR",
   "type": "module",
   "main": "lib/index.js",
@@ -14,14 +14,12 @@
     "build": "rimraf lib && tsc"
   },
   "keywords": [
-    "Signed QR",
-    "Secure QR",
-    "SecureQR",
-    "SignedQR",
-    "mDoc",
-    "mDL",
-    "SDJWT",
-    "AltID"
+    "signed-qr",
+    "secure-qr",
+    "m-doc",
+    "mdl",
+    "sdjwt",
+    "altid"
   ],
   "author": "Daniel Florescu",
   "license": "Apache-2.0",

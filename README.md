@@ -3,7 +3,7 @@
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](https://www.typescriptlang.org/)
 
 A Node.js package written in Typescript for decoding and parsing QR codes
-according to the Digitaliseringsstyrelsen _Signed QR_<sup>_[1]_</sup> and dewa _SecureQR_<sup>_[2]_</sup> specifications,
+according to the Digitaliseringsstyrelsen _Signed QR_<sup>[1]</sup> and dewa _SecureQR_<sup>[2]</sup> specifications,
 which are commonly used for device-to-device presentations of digital proofs between wallets.
 
 ## Roadmap
