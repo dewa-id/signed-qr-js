@@ -1,6 +1,6 @@
 {
   "name": "@dewa-id/signed-qr",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Tiny parser for AltID Signed QR and e-Boks SecureQR",
   "type": "module",
   "main": "lib/index.js",
