@@ -11,22 +11,28 @@ which are commonly used for device-to-device presentations of digital proofs bet
 ### CBOR/mDoc based "Signed QR" (used by AltID)
 
 - [ ] **Basic QR Frame Decoding** - Parse individual QR code frames with parameters
-- [ ] **Multi-QR Assembly** - Combine multiple QR codes into complete payload
-- [ ] **Signature Verification** - Verify cryptographic signatures of decoded payload
-- [ ] **Trust Anchor Validation** - Validate against trusted certificate authorities
+- [ ] **Multi-QR Assembly** - Combine multiple QR codes into complete payload (mDoc as Uint8Array)
 - [ ] **Documentation** - Comprehensive API documentation and usage guides
 - [ ] **Tests** - Unit tests and integration tests
 - [ ] **Examples** - Working examples and sample code
+
+Currently out of scope:
+
+- [ ] **Signature Verification** - Verify cryptographic signatures of decoded payload
+- [ ] **Trust Anchor Validation** - Validate against trusted certificate authorities
 
 ### SDJWT-based "SecureQR" (used by e-Boks ID)
 
 - [x] **Basic QR Frame Decoding** - Parse individual QR code frames with parameters
-- [x] **Multi-QR Assembly** - Combine multiple QR codes into complete payload
-- [ ] **Signature Verification** - Verify cryptographic signatures of decoded payload
-- [ ] **Trust Anchor Validation** - Validate against trusted certificate authorities
+- [x] **Multi-QR Assembly** - Combine multiple QR codes into complete payload (SD-JWT as string)
 - [ ] **Documentation** - Comprehensive API documentation and usage guides
 - [ ] **Tests** - Unit tests and integration tests
 - [ ] **Examples** - Working examples and sample code
+
+Currently out of scope:
+
+- [ ] **Signature Verification** - Verify cryptographic signatures of decoded payload
+- [ ] **Trust Anchor Validation** - Validate against trusted certificate authorities
 
 ## References
 
@@ -34,5 +40,12 @@ which are commonly used for device-to-device presentations of digital proofs bet
 - [2] [Documentation dewa SecureQR](https://docs.dewa-id.com/docs/e-wallet/qr-code/)
 
 ## License
+
+Apache-2.0 requires you to:
+
+- Include Copyright
+- Include License
+- State Changes
+- Include Notice
 
 [Apache Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
