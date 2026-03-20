@@ -26,8 +26,8 @@ Currently out of scope:
 
 - [x] **Basic QR Frame Decoding** - Parse individual QR code frames with parameters
 - [x] **Multi-QR Assembly** - Combine multiple QR codes into complete payload (SD-JWT as string)
-  - [X] Basic unit testing added
 - [ ] **Documentation** - Comprehensive API documentation and usage guides
+  - [X] Basic unit testing added
 - [ ] **Tests** - Unit tests and integration tests
 - [ ] **Examples** - Working examples and sample code
 
