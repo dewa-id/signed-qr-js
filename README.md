@@ -10,11 +10,11 @@ which are commonly used for device-to-device presentations of digital proofs bet
 
 ### CBOR/mDoc based "Signed QR" (used by AltID)
 
-- [X] **Basic QR Frame Decoding** - Parse individual QR code frames with parameters
-- [X] **Multi-QR Assembly** - Combine multiple QR codes into complete payload (mDoc as Uint8Array)
+- [x] **Basic QR Frame Decoding** - Parse individual QR code frames with parameters
+- [x] **Multi-QR Assembly** - Combine multiple QR codes into complete payload (mDoc as Uint8Array)
 - [ ] **Documentation** - Comprehensive API documentation and usage guides
 - [ ] **Tests** - Unit tests and integration tests
-  - [X] Basic unit testing added
+  - [x] Basic unit testing added
 - [ ] **Examples** - Working examples and sample code
 
 Currently out of scope:
@@ -27,8 +27,8 @@ Currently out of scope:
 - [x] **Basic QR Frame Decoding** - Parse individual QR code frames with parameters
 - [x] **Multi-QR Assembly** - Combine multiple QR codes into complete payload (SD-JWT as string)
 - [ ] **Documentation** - Comprehensive API documentation and usage guides
-  - [X] Basic unit testing added
 - [ ] **Tests** - Unit tests and integration tests
+  - [x] Basic unit testing added
 - [ ] **Examples** - Working examples and sample code
 
 Currently out of scope:
