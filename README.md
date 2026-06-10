@@ -8,7 +8,9 @@ which are commonly used for device-to-device presentations of digital proofs bet
 
 ## Roadmap
 
-### CBOR/mDoc based "Signed QR" (used by AltID)
+### ~CBOR/mDoc based "Signed QR" (used by AltID)~ OUTDATED
+
+Update: AltID has changed their QR frame format, library will be updated.
 
 - [x] **Basic QR Frame Decoding** - Parse individual QR code frames with parameters
 - [x] **Multi-QR Assembly** - Combine multiple QR codes into complete payload (mDoc as Uint8Array)
@@ -43,7 +45,7 @@ Currently out of scope:
 
 ## License
 
-Apache-2.0 requires you to:
+Apache-2.0 broadly requires you to:
 
 - Include Copyright
 - Include License
