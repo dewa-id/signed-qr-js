@@ -9,14 +9,13 @@
         "types": [
             "jest"
         ],
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         // Other Outputs
         "sourceMap": true,
         "declaration": false,
         // Path mapping for accessing compiled code
-        "baseUrl": ".",
         "paths": {
             "~src/*": [
                 "../dist/*"

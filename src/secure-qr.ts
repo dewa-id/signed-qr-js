@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2
 import { base64 } from "@hexagon/base64";
 import { groupBy, sortBy, keys, every, sortedUniqBy } from "lodash-es";
-import pako from "pako";
+import { inflate } from "pako";
 
 export interface SecureQrFrame {
   id: string; // unique presentation ID
@@ -91,7 +91,7 @@ export function assembleSecureQrPayload(
   const payloadDeflated = framesUnique.map((f) => f.d).join("");
   let payloadInflated: Uint8Array;
   try {
-    payloadInflated = pako.inflate(
+    payloadInflated = inflate(
       new Uint8Array(base64.toArrayBuffer(payloadDeflated, true)),
     );
   } catch (ex) {

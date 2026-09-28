@@ -43,12 +43,24 @@ Currently out of scope:
 - [1] [Implementing Age Verification With Danish Digital Identity Wallet (DKTB)](https://digst.dk/media/5gybwsaq/implementing-age-verification-with-danish-digital-identity-wallet-dktb-09.pdf)
 - [2] [Documentation dewa SecureQR](https://docs.dewa-id.com/docs/e-wallet/qr-code/)
 
+## Development
+
+```sh
+# Build project
+pnpm build
+
+# Run tests
+pnpm build:test
+pnpm test
+```
+
 ## Release pipeline
 
 1. Update package.json
-2. Create `git tag`
-3. Create GitHub release from tag
-4. GitHub action will run and release to npm
+2. Update CHANGELOG.md
+3. Create `git tag`
+4. Create GitHub release from tag
+5. GitHub action will run and release to npm
 
 ## License
 

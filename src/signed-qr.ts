@@ -6,9 +6,11 @@ import { concatUint8Arrays } from "uint8array-extras";
 import { groupBy, sortBy, keys, every, sortedUniqBy } from "lodash-es";
 
 export interface SignedQrFrame {
-  i: number; // index of frames
-  n: number; // total number of frames
-  p: Uint8Array; // payload
+  typ: string; // "AltID-1.0"
+  txn: string; // Transaction identifier
+  idx: number; // Frame index
+  cnt: number; // Frame count
+  part: Uint8Array; // Frame partial payload
 }
 
 /**
@@ -17,6 +19,11 @@ export interface SignedQrFrame {
  * @returns Decoded SignedQrFrame
  */
 export function decodeSignedQrFrame(frameData: string): SignedQrFrame {
+  // toArrayBuffer silently skips invalid characters, so validate explicitly
+  if (!base64.validate(frameData.replace(/=+$/, ""), true)) {
+    throw new Error("bad QR frame: invalid base64 encoding");
+  }
+
   let frameBytes: Uint8Array;
   try {
     frameBytes = new Uint8Array(base64.toArrayBuffer(frameData, true));
@@ -31,24 +38,32 @@ export function decodeSignedQrFrame(frameData: string): SignedQrFrame {
     throw new Error("bad QR frame: invalid CBOR encoding", { cause: ex });
   }
 
-  if (typeof frame.i !== "number" || frame.i < 0) {
-    throw new Error("bad QR frame: 'i' (index) is invalid");
-  }
-  if (typeof frame.n !== "number" || frame.n <= 0) {
-    throw new Error("bad QR frame: 'n' (count) is invalid");
-  }
-  if (!frame.p || !(frame.p instanceof Uint8Array)) {
-    throw new Error("bad QR frame: 'p' (payload) is invalid");
-  }
+  // typ
+  if (typeof frame.typ !== "string" || frame.typ !== "AltID-1.0")
+    throw new Error("bad QR frame: 'typ' not equal to \"AltID-1.0\"");
+  // txn
+  if (typeof frame.txn !== "string" || frame.txn.length === 0)
+    throw new Error("bad QR frame: 'txn' (transaction identifier) is invalid");
+  // idx
+  if (typeof frame.idx !== "number" || frame.idx < 0)
+    throw new Error("bad QR frame: 'idx' (index) is invalid");
+  // cnt
+  if (typeof frame.cnt !== "number" || frame.cnt <= 0)
+    throw new Error("bad QR frame: 'cnt' (count) is invalid");
+  // part
+  if (!frame.part || !(frame.part instanceof Uint8Array))
+    throw new Error("bad QR frame: 'part' (payload) is invalid");
 
   return frame;
 }
 
 export interface SignedQrPayload {
-  d: Uint8Array; // message data
-  f: number; // from timestamp
-  t: number; // to timestamp
-  m: string; // nonce
+  typ: "AltID-1.0";
+  txn: string; // transaction ID
+  mnonce: string; // nonce
+  nbf: number; // from timestamp
+  exp: number; // to timestamp
+  doc: Uint8Array; // message data
 }
 
 export interface AssembleSignedQrPayloadOptions {
@@ -69,8 +84,9 @@ export function assembleSignedQrPayload(
     throw new Error("bad frames: insufficient frame count");
   }
 
+  // Sort frames into correct order
   const framesGrouped = sortBy(
-    groupBy(frames, (f) => f.n),
+    groupBy(frames, (f) => f.cnt),
     (group) => group.length,
   );
 
@@ -82,21 +98,21 @@ export function assembleSignedQrPayload(
   }
 
   // Choose the biggest group, sort by index
-  const selectedFrames = sortBy(framesGrouped.at(-1)!, (frame) => frame.i);
+  const selectedFrames = sortBy(framesGrouped.at(-1)!, (frame) => frame.idx);
 
   if (selectedFrames.length === 0) {
     throw new Error("bad frames: insufficient frame count");
   }
 
-  const expectedFrameCount = selectedFrames[0]!.n;
+  const expectedFrameCount = selectedFrames[0]!.cnt;
 
   // Check all frames have consistent count
-  if (!every(selectedFrames, (f) => f.n === expectedFrameCount)) {
+  if (!every(selectedFrames, (f) => f.cnt === expectedFrameCount)) {
     throw new Error("bad frames: inconsistent frame count");
   }
 
   // Filter duplicate frames and ensure we have complete set
-  const framesUnique = sortedUniqBy(selectedFrames, (f) => f.i);
+  const framesUnique = sortedUniqBy(selectedFrames, (f) => f.idx);
   if (framesUnique.length < expectedFrameCount) {
     throw new Error("bad frames: insufficient unique frame count");
   }
@@ -106,14 +122,14 @@ export function assembleSignedQrPayload(
 
   // Check for missing frames in sequence
   for (let i = 0; i < expectedFrameCount; i++) {
-    if (!framesUnique.some((f) => f.i === i)) {
+    if (!framesUnique.some((f) => f.idx === i)) {
       throw new Error(`bad frames: missing frame at index ${i}`);
     }
   }
 
   // Combine payload parts in correct order
-  const sortedFrames = framesUnique.sort((a, b) => a.i - b.i);
-  const payloadBytes = concatUint8Arrays(sortedFrames.map((f) => f.p));
+  const sortedFrames = framesUnique.sort((a, b) => a.idx - b.idx);
+  const payloadBytes = concatUint8Arrays(sortedFrames.map((f) => f.part));
 
   let payload: SignedQrPayload;
   try {
@@ -123,17 +139,20 @@ export function assembleSignedQrPayload(
   }
 
   // Validate payload structure
-  if (!payload.d || !(payload.d instanceof Uint8Array)) {
-    throw new Error("bad payload: 'd' (message data) is invalid");
+  if (strict && payload.typ !== "AltID-1.0") {
+    throw new Error("bad payload (strict): 'typ' not equal to \"AltID-1.0\"");
   }
-  if (typeof payload.f !== "number") {
-    throw new Error("bad payload: 'f' (from timestamp) is invalid");
+  if (!payload.doc || !(payload.doc instanceof Uint8Array)) {
+    throw new Error("bad payload: 'doc' (message data) is invalid");
   }
-  if (typeof payload.t !== "number") {
-    throw new Error("bad payload: 't' (to timestamp) is invalid");
+  if (typeof payload.nbf !== "number") {
+    throw new Error("bad payload: 'nbf' (from timestamp) is invalid");
   }
-  if (typeof payload.m !== "string") {
-    throw new Error("bad payload: 'm' (nonce) is invalid");
+  if (typeof payload.exp !== "number") {
+    throw new Error("bad payload: 'exp' (to timestamp) is invalid");
+  }
+  if (typeof payload.mnonce !== "string") {
+    throw new Error("bad payload: 'mnonce' (nonce) is invalid");
   }
 
   return payload;
