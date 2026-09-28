@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.2.1](https://github.com/dewa-id/signed-qr-js/compare/v0.2.0...v0.2.1) (2026-09-28)
+
+Updated package description and roadmap.
+
 ## [0.2.0](https://github.com/dewa-id/signed-qr-js/compare/v0.1.6...v0.2.0) (2026-09-28)
 
 Major changes:
