@@ -8,7 +8,7 @@ which are commonly used for device-to-device presentations of digital proofs bet
 
 ## Roadmap
 
-### ~CBOR/mDoc based "Signed QR" (used by AltID)~ OUTDATED
+### CBOR/mDoc based "Signed QR" (used by AltID)
 
 Update: AltID has changed their QR frame format, library will be updated.
 
@@ -40,7 +40,7 @@ Currently out of scope:
 
 ## References
 
-- [1] [Implementing Age Verification With Danish Digital Identity Wallet (DKTB)](https://digst.dk/media/5gybwsaq/implementing-age-verification-with-danish-digital-identity-wallet-dktb-09.pdf)
+- [1] [Implementing Age Verification With Danish Digital Identity Wallet (DKTB) v1.0.1](https://lnk.dk/altid-integration-v101)
 - [2] [Documentation dewa SecureQR](https://docs.dewa-id.com/docs/e-wallet/qr-code/)
 
 ## Development
@@ -58,7 +58,7 @@ pnpm test
 
 1. Update package.json
 2. Update CHANGELOG.md
-3. Create `git tag`
+3. Create `git tag` and push
 4. Create GitHub release from tag
 5. GitHub action will run and release to npm
 
